@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 import { selectContacts } from 'redux/selectors';
 import { requestAddContact } from 'redux/contacts/contacts.operations';
 
-import { ContactFormSt, AddBtn } from './ContactForm.styled';
+import { ContactFormSt } from './ContactForm.styled';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();

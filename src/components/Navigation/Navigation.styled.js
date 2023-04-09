@@ -10,7 +10,6 @@ export const NavSt = styled.nav`
 export const Wrapper = styled.div`
   display: flex;
   gap: 100px;
-  /* justify-content: center; */
 `;
 
 export const NavLinkSt = styled(NavLink)`

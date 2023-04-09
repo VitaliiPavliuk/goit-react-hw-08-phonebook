@@ -78,7 +78,6 @@ function RegisterPage() {
           />
         </label>
         <br />
-
         <Button
           variant="contained"
           type="submit"
