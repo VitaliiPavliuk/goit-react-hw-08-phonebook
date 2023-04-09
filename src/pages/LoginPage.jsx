@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Button } from '@mui/material';
 
 import { selectIsLoggedIn, selectUserStatus } from '../redux/selectors';
 import { requestLogin } from '../redux/user/user.operations';
@@ -38,18 +39,25 @@ function LoginPage() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <h2>Login into your account!</h2>
-      <form onSubmit={handleSubmit}>
+      <form
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+        onSubmit={handleSubmit}
+      >
         <label>
           <p>Email:</p>
-          <input
-            type="email"
-            ref={emailInputRef}
-            name="userEmail"
-            placeholder="ivan_pupkin@gmail.com"
-            required
-          />
+          <input type="email" ref={emailInputRef} name="userEmail" required />
         </label>
         <label>
           <p>Password:</p>
@@ -62,9 +70,13 @@ function LoginPage() {
           />
         </label>
         <br />
-        <button type="submit" disabled={status === 'pending'}>
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={status === 'pending'}
+        >
           Sign In
-        </button>
+        </Button>
       </form>
     </div>
   );

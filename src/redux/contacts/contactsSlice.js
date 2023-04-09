@@ -8,7 +8,7 @@ import {
 const initialState = {
   contacts: [],
   status: 'idle',
-  error: null,
+  // error: null,
 };
 
 const contactsSlice = createSlice({
@@ -48,11 +48,11 @@ const contactsSlice = createSlice({
 
 function pendingReducer(state) {
   state.status = 'pending';
-  state.error = null;
+  // state.error = null;
 }
-function errorReducer(state, { payload }) {
+function errorReducer(state) {
   state.status = 'rejected';
-  state.error = payload;
+  // state.error = payload;
 }
 
 export const contactsReducer = contactsSlice.reducer;

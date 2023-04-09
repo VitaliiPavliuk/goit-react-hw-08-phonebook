@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Button } from '@mui/material';
 
 import { selectIsLoggedIn, selectUserStatus } from 'redux/selectors';
 import { requestRegister } from 'redux/user/user.operations';
@@ -42,28 +43,29 @@ function RegisterPage() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <h2>Register new account!</h2>
-      <form onSubmit={handleSubmit}>
+      <form
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+        onSubmit={handleSubmit}
+      >
         <label>
           <p>Name:</p>
-          <input
-            type="text"
-            ref={nameInputRef}
-            name="userName"
-            placeholder="Ivan Pupkin"
-            required
-          />
+          <input type="text" ref={nameInputRef} name="userName" required />
         </label>
         <label>
           <p>Email:</p>
-          <input
-            type="email"
-            ref={emailInputRef}
-            name="userEmail"
-            placeholder="ivan_pupkin@gmail.com"
-            required
-          />
+          <input type="email" ref={emailInputRef} name="userEmail" required />
         </label>
         <label>
           <p>Password:</p>
@@ -76,9 +78,14 @@ function RegisterPage() {
           />
         </label>
         <br />
-        <button type="submit" disabled={status === 'pending'}>
+
+        <Button
+          variant="contained"
+          type="submit"
+          disabled={status === 'pending'}
+        >
           Sign Up
-        </button>
+        </Button>
       </form>
     </div>
   );

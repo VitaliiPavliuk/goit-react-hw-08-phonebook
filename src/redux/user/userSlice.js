@@ -14,7 +14,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   status: 'idle',
-  error: null,
+  // error: null,
 };
 
 const userSlice = createSlice({
@@ -73,11 +73,11 @@ const userSlice = createSlice({
 
 function pendingReducer(state) {
   state.status = 'pending';
-  state.error = null;
+  // state.error = null;
 }
-function errorReducer(state, { payload }) {
+function errorReducer(state) {
   state.status = 'rejected';
-  state.error = payload;
+  // state.error = payload;
 }
 
 export const userReducer = userSlice.reducer;

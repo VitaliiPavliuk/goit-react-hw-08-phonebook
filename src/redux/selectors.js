@@ -1,12 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-// export const selectIsLoading = state => state.contacts.isLoading;
-// export const selectError = state => state.contacts.error;
-
 // ----- User Selectors --------------------------------
 export const selectUserStatus = state => state.user.status;
 export const selectIsLoggedIn = state => state.user.isLoggedIn;
-export const selectUserName = state => state.user.user.name;
+export const selectUserEmail = state => state.user.user.email;
 
 // ----- Contacts Selectors --------------------------------
 export const selectContactsStatus = state => state.contacts.status;
