@@ -1,28 +1,30 @@
 import React, { useEffect } from 'react';
-// import DeleteIcon from '@mui/icons-material/Delete';
-// import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-// import ContactForm from '../components/ContactForm/ContactForm';
+
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from '@mui/material';
+import { toast } from 'react-toastify';
+
+import { ContactForm } from 'components/ContactForm/ContactForm';
+import { Loader } from 'components/Loader/Loader';
+import { Filter } from 'components/Filter/Filter';
+import { withAuthRedirect } from 'components/hoc/withAuthRedirect';
+
 import {
-  selectContacts,
   selectContactsStatus,
   selectIsLoggedIn,
+  selectfilteredContacts,
 } from '../redux/selectors';
-// import { Loader } from '../components';
-
-import { toast } from 'react-toastify';
-// import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import {
   requestDeleteContact,
   requestUserContacts,
 } from 'redux/contacts/contacts.operations';
-import { ContactForm } from 'components/ContactForm/ContactForm';
-import { Loader } from 'components/Loader/Loader';
 
 function ContactsPage() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const status = useSelector(selectContactsStatus);
-  const contacts = useSelector(selectContacts);
+
+  const filteredContacts = useSelector(selectfilteredContacts);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,33 +47,35 @@ function ContactsPage() {
       <ContactForm />
 
       {status === 'pending' && <Loader />}
-      {contacts !== null && (
-        <ul>
-          {contacts.map(contact => {
-            return (
-              <li key={contact.id}>
-                <p>
-                  <b>Name:</b> {contact.name}
-                </p>
-                <p>
-                  <b>Number:</b> {contact.phone}
-                </p>
-                <button
-                  onClick={() => handleDeleteContact(contact.id)}
-                  variant="outlined"
-                  //   startIcon={<DeleteIcon />}
-                >
-                  Delete
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+
+      {filteredContacts.length !== 0 && (
+        <div>
+          <Filter />
+          <ul>
+            {filteredContacts.map(contact => {
+              return (
+                <li key={contact.id}>
+                  <p>
+                    <b>Name:</b> {contact.name}
+                  </p>
+                  <p>
+                    <b>Number:</b> {contact.number}
+                  </p>
+                  <Button
+                    onClick={() => handleDeleteContact(contact.id)}
+                    variant="outlined"
+                    startIcon={<DeleteIcon />}
+                  >
+                    Delete
+                  </Button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       )}
     </div>
   );
 }
 
-export default ContactsPage;
-
-// export default withAuthRedirect(ContactsPage, '/login');
+export default withAuthRedirect(ContactsPage, '/login');

@@ -6,6 +6,7 @@ import { createSelector } from '@reduxjs/toolkit';
 // ----- User Selectors --------------------------------
 export const selectUserStatus = state => state.user.status;
 export const selectIsLoggedIn = state => state.user.isLoggedIn;
+export const selectUserName = state => state.user.user.name;
 
 // ----- Contacts Selectors --------------------------------
 export const selectContactsStatus = state => state.contacts.status;

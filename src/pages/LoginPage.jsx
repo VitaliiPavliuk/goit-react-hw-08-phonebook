@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { requestLogin } from '../redux/user/user.operations';
 import { selectIsLoggedIn, selectUserStatus } from '../redux/selectors';
+import { requestLogin } from '../redux/user/user.operations';
 
 function LoginPage() {
   const status = useSelector(selectUserStatus);

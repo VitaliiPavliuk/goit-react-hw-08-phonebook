@@ -6,7 +6,7 @@ import {
 } from './contacts.operations';
 
 const initialState = {
-  contacts: null,
+  contacts: [],
   status: 'idle',
   error: null,
 };
@@ -31,8 +31,7 @@ const contactsSlice = createSlice({
       .addCase(requestAddContact.pending, pendingReducer)
       .addCase(requestAddContact.fulfilled, (state, { payload }) => {
         state.status = 'resolved';
-        state.contacts =
-          state.contacts === null ? [payload] : [...state.contacts, payload];
+        state.contacts = [...state.contacts, payload];
       })
       .addCase(requestAddContact.rejected, errorReducer)
 

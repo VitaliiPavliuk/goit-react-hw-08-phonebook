@@ -2,22 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   requestLogin,
   requestLogout,
+  requestRefreshUser,
   requestRegister,
 } from './user.operations';
-
-// import {
-//   requestLogin,
-//   requestLogout,
-//   requestRefreshUser,
-//   requestRegister,
-// } from './user.operations';
 
 const initialState = {
   user: {
     name: null,
     email: null,
   },
-  //   token: null,
+  token: null,
   isLoggedIn: false,
   status: 'idle',
   error: null,
@@ -62,19 +56,19 @@ const userSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(requestLogout.rejected, errorReducer),
+      .addCase(requestLogout.rejected, errorReducer)
 
-  // ------------ User refresh ----------------
-  //   .addCase(requestRefreshUser.pending, pendingReducer)
-  //   .addCase(requestRefreshUser.fulfilled, (state, { payload }) => {
-  //     state.status = 'resolved';
-  //     state.user = {
-  //       name: payload.name,
-  //       email: payload.email,
-  //     };
-  //     state.isLoggedIn = true;
-  //   })
-  //   .addCase(requestRefreshUser.rejected, errorReducer),
+      // ------------ User refresh ----------------
+      .addCase(requestRefreshUser.pending, pendingReducer)
+      .addCase(requestRefreshUser.fulfilled, (state, { payload }) => {
+        state.status = 'resolved';
+        state.user = {
+          name: payload.name,
+          email: payload.email,
+        };
+        state.isLoggedIn = true;
+      })
+      .addCase(requestRefreshUser.rejected, errorReducer),
 });
 
 function pendingReducer(state) {

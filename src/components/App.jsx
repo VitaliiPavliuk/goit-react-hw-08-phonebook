@@ -1,17 +1,11 @@
 import React, { lazy, Suspense, useEffect } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
 
-import { Loader } from './Loader/Loader';
 import { requestLogout, requestRefreshUser } from 'redux/user/user.operations';
-import { selectIsLoggedIn } from 'redux/selectors';
-
-// import {
-//   requestLogout,
-//   requestRefreshUser,
-// } from './redux/user/user.operations';
-// import { selectIsLoggedIn, selectItemsQuantity } from './redux/selectors';
+import { selectIsLoggedIn, selectUserName } from 'redux/selectors';
+import { Loader } from './Loader/Loader';
 
 // const HomePage = lazy(() => import('./pages/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -20,6 +14,7 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 
 const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userName = useSelector(selectUserName);
   const dispatch = useDispatch();
 
   const handleLogOut = async () => {
@@ -33,6 +28,7 @@ const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+
     if (isLoggedIn || !token) return;
 
     const refresh = async () => {
@@ -56,8 +52,8 @@ const App = () => {
               {/* <NavLink to="/">Home</NavLink> */}
               <NavLink to="/contacts">Contacts</NavLink>
               <div>
-                <p>UserName: user_name</p>
-                <p>UserEmail: user_email@gmail.com</p>
+                <p>User Name: {userName}</p>
+                <p>User Email: user_email@gmail.com</p>
               </div>
               <button onClick={handleLogOut}>Log Out</button>
             </>

@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { UserAPI } from 'services/phonebookAPI';
 
 export const requestRegister = createAsyncThunk(
