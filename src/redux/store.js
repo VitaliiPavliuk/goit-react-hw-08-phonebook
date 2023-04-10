@@ -20,7 +20,7 @@ const userConfig = {
   key: 'user',
   storage,
 
-  //   whitelist: ['token'],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
