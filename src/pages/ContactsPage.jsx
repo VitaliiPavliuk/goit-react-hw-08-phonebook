@@ -6,6 +6,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Loader } from 'components/Loader/Loader';
 import { withAuthRedirect } from 'components/hoc/withAuthRedirect';
 import { ContactsList } from 'components/ContactList/ContactsList';
+import { Filter } from 'components/Filter/Filter';
 
 function ContactsPage() {
   const status = useSelector(selectContactsStatus);
@@ -19,6 +20,8 @@ function ContactsPage() {
       }}
     >
       <ContactForm />
+
+      <Filter />
 
       {status === 'pending' && <Loader />}
 

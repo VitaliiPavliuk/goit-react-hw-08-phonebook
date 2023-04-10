@@ -8,7 +8,6 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 
-import { Filter } from 'components/Filter/Filter';
 import { selectIsLoggedIn, selectfilteredContacts } from 'redux/selectors';
 import {
   requestDeleteContact,
@@ -45,8 +44,6 @@ export const ContactsList = () => {
             alignItems: 'center',
           }}
         >
-          <Filter />
-
           <List dense sx={{ width: '100%', maxWidth: 480 }}>
             {filteredContacts.map(contact => {
               return (
