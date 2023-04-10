@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 
 import { requestRefreshUser } from 'redux/user/user.operations';
-import { selectIsLoggedIn, selectUserStatus } from 'redux/selectors';
+import {
+  selectIsLoggedIn,
+  selectToken,
+  selectUserStatus,
+} from 'redux/selectors';
 import { Navigation } from './Navigation/Navigation';
 import { Loader } from './Loader/Loader';
 
@@ -16,10 +20,11 @@ const ContactsPage = lazy(() => import('../pages/ContactsPage'));
 const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const userStatus = useSelector(selectUserStatus);
+  const token = useSelector(selectToken);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    // const token = localStorage.getItem('token');
 
     if (isLoggedIn || !token) return;
 
@@ -33,7 +38,7 @@ const App = () => {
     };
 
     refresh();
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch, isLoggedIn, token]);
 
   return userStatus === 'pending' ? (
     <Loader />

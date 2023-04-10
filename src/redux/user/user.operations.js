@@ -7,7 +7,7 @@ export const requestRegister = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await UserAPI.register(formData);
-      response?.token && localStorage.setItem('token', response.token);
+      // response?.token && localStorage.setItem('token', response.token);
 
       return response;
     } catch (error) {
@@ -21,7 +21,7 @@ export const requestLogin = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await UserAPI.login(formData);
-      response?.token && localStorage.setItem('token', response.token);
+      // response?.token && localStorage.setItem('token', response.token);
 
       return response;
     } catch (error) {
@@ -35,7 +35,7 @@ export const requestLogout = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await UserAPI.logout();
-      localStorage.removeItem('token');
+      // localStorage.removeItem('token');
 
       return response;
     } catch (error) {
